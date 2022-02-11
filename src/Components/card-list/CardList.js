@@ -1,9 +1,14 @@
-import './CardList.css';
+import "./CardList.css";
+import Card from "../card/Card";
 
-const CardList = (props) => {
+const CardList = ({ users }) => {
   return (
-    <div className='card-list'>{props.children}</div>
+    <div className="card-list">
+      {users.map((user) => (
+        <Card key={user.id} user={user} />
+      ))}
+    </div>
   );
-}
+};
 
 export default CardList;
