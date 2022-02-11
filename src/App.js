@@ -33,6 +33,7 @@ class App extends Component {
     );
     return (
       <div className="App">
+        <h1 className="monsterTitle">Monsters Rolodex</h1>
         <SearchField
           handleChange={this.handleChange}
           searchPlaceholder="Search Monsters"
