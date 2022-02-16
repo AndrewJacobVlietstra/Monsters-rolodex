@@ -22,12 +22,17 @@ class App extends Component {
       .catch((err) => console.log(err));
   }
 
+
   onChangeInputHandler = (e) => {
-    this.setState({ InputField: e.target.value }, console.log(this.state.InputField));
+    this.setState({ InputField: e.target.value }, () => console.log(this.state.InputField));
   }
 
   handleChange = (e) => {
     this.setState({ searchField: e.target.value });
+  }
+
+  sayThis = () => {
+    console.log(this);
   }
 
   render() {
@@ -38,6 +43,7 @@ class App extends Component {
     return (
       <div className="App">
         <h1 className="monsterTitle">{this.state.InputField ? this.state.InputField : 'Monsters Rolodex'}</h1>
+        <button onClick={this.sayThis}>Say "this"</button> <br />
         <InputSearch onChangeHandler={this.onChangeInputHandler} /> <br />
         <SearchField
           handleChange={this.handleChange}
