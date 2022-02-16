@@ -2,6 +2,7 @@ import "./App.css";
 import { Component } from "react";
 import CardList from "./Components/card-list/CardList";
 import SearchField from "./Components/search-field/SearchField";
+import InputSearch from "./Components/input-search/InputSearch";
 
 class App extends Component {
   constructor() {
@@ -10,6 +11,7 @@ class App extends Component {
     this.state = {
       users: [],
       searchField: "",
+      InputField: "",
     };
   }
 
@@ -20,18 +22,23 @@ class App extends Component {
       .catch((err) => console.log(err));
   }
 
+  onChangeInputHandler = (e) => {
+    this.setState({ InputField: e.target.value }, console.log(this.state.InputField));
+  }
+
   handleChange = (e) => {
     this.setState({ searchField: e.target.value });
   }
 
   render() {
-    const { users, searchField } = this.state;
+    const { users, searchField } = this.state; // pull out values from state using object destructuring
     const filteredUsers = users.filter((user) =>
       user.name.toLowerCase().includes(searchField.toLowerCase())
     );
     return (
       <div className="App">
-        <h1 className="monsterTitle">Monsters Rolodex</h1>
+        <h1 className="monsterTitle">{this.state.InputField ? this.state.InputField : 'Monsters Rolodex'}</h1>
+        <InputSearch onChangeHandler={this.onChangeInputHandler} /> <br />
         <SearchField
           handleChange={this.handleChange}
           searchPlaceholder="Search Monsters"
