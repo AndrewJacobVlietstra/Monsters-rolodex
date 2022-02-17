@@ -16,6 +16,7 @@ class App extends Component {
   }
 
   componentDidMount() {
+    console.log(this);
     fetch("https://jsonplaceholder.typicode.com/users")
       .then((response) => response.json())
       .then((userList) => this.setState({ users: userList }))
@@ -35,6 +36,10 @@ class App extends Component {
     console.log(this);
   }
 
+  hello() {
+    console.log(this);
+  }
+
   render() {
     const { users, searchField } = this.state; // pull out values from state using object destructuring
     const filteredUsers = users.filter((user) =>
@@ -43,7 +48,7 @@ class App extends Component {
     return (
       <div className="App">
         <h1 className="monsterTitle">{this.state.InputField ? this.state.InputField : 'Monsters Rolodex'}</h1>
-        <button onClick={this.sayThis}>Say "this"</button> <br />
+        <button onClick={this.hello.bind(this)}>Say "this"</button> <br />
         <InputSearch onChangeHandler={this.onChangeInputHandler} /> <br />
         <SearchField
           handleChange={this.handleChange}
